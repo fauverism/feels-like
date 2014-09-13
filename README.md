@@ -7,3 +7,6 @@ Using the weather underground API to provide a quick overview of what it feels l
 
 TODOS
 [ ] - get the api and put it into the $scope
+
+NOTES
+- give restangular a shot
