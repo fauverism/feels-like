@@ -18,16 +18,20 @@ angular
     'ngTouch',
     'restangular'
   ])
-    .config(function ($routeProvider, $httpProvider) {
-      $routeProvider
-        .when('/', {
-          templateUrl: 'views/main.html',
-          controller: 'MainCtrl'
-        })
-        /*Help Modal is in the ModalService*/
-        .otherwise({
-          redirectTo: '/'
-        });
-      $httpProvider.defaults.useXDomain = true;
-      delete $httpProvider.defaults.headers.common['X-Requested-With'];
-    });
+  .config(function ($httpProvider, $routeProvider) {
+
+    $httpProvider.defaults.useXDomain = true;
+    delete $httpProvider.defaults.headers
+      .common['X-Requested-With'];
+
+    $routeProvider
+      .when('/', {
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl'
+      })
+      /*Help Modal is in the ModalService*/
+      .otherwise({
+        redirectTo: '/'
+      });
+
+  });
