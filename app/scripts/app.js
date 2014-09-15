@@ -18,11 +18,23 @@ angular
     'ngTouch',
     'restangular'
   ])
-  .config(function ($httpProvider, $routeProvider) {
+  .config(function ($httpProvider, RestangularProvider, $routeProvider) {
 
     $httpProvider.defaults.useXDomain = true;
-    delete $httpProvider.defaults.headers
-      .common['X-Requested-With'];
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
+    RestangularProvider.setBaseUrl('http://api.wunderground.com/api/d029755bddbad42d/conditions/q/NJ/Moorestown.json');
+
+    RestangularProvider.setRequestInterceptor(
+      function(elem, operation, what) {
+        if (operation === 'put') {
+          elem._id = undefined;
+          return elem;
+        }
+        return elem;
+      });
+
+    console.log(this);
 
     $routeProvider
       .when('/', {
